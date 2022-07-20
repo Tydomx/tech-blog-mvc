@@ -3,7 +3,7 @@ const { Comment } = require('../../models');
 const withAuth = require('../../utils/auth');
 
 router.get('/', (req, res) => {
-	Comment.findAll()
+	Comment.findAll({})
 		.then(dbCommentData => res.json(dbCommentData))
 		.catch(err => {
 			console.log(err);
@@ -12,7 +12,7 @@ router.get('/', (req, res) => {
 });
 
 router.get('/:id', (req, res) => {
-	Comment.findOne({
+	Comment.findAll({
 		where: {
 			id: req.params.id
 		}
@@ -34,7 +34,7 @@ router.post('/', withAuth, (req, res) => {
 			.then(dbCommentData => res.json(dbCommentData))
 			.catch(err => {
 				console.log(err);
-				res.status(500).json(err);
+				res.status(400).json(err);
 			});
 	}
 });

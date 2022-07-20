@@ -16,6 +16,7 @@ async function newFormHandler(event) {
 	});
 
 	if (response.ok) {
+		// if post added, re-direct user back to the dashboard
 		document.location.replace('/dashboard');
 	} else {
 		alert(response.statusText);

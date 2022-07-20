@@ -5,6 +5,7 @@ async function logout() {
 	});
 
 	if (response.ok) {
+		// go to homepage when login successful
 		document.location.replace('/');
 	} else {
 		alert(response.statusText);
