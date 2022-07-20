@@ -11,6 +11,7 @@ router.get('/', (req, res) => {
 			'content',
 			'created_at'
 		],
+		// order is putting the posts in descending order
 		order: [
 			['created_at', 'DESC']
 		],
