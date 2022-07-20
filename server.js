@@ -10,10 +10,10 @@ const exphbs = require('express-handlebars');
 const hbs = exphbs.create({ helpers });
 // setting up express.js session and connect session to Sequelize DB
 const session = require('express-session');
-const SequelizeStore = requre('connect-session-sequelize')(session.Store);
+const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const sess = {
 	secret: 'Super secret secret',
-	cookie: {},
+	cookie: { maxAge: 36000 },
 	resave: false,
 	saveUninitialized: true,
 	store: new SequelizeStore({
@@ -37,6 +37,6 @@ app.set('view engine', 'handlebars');
 app.use(routes);
 
 // turn on connection to db and server
-sequelize.sync({ force: false }).then(() => {
+sequelize.sync({ force: true }).then(() => {
 	app.listen(PORT, () => console.log(`Now listening on ${PORT}`));
 });
